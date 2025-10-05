@@ -20,10 +20,10 @@ const settings = {
   functionGlobalContext: { }, // enables global context
   editorTheme: {
     page: {
-        title: "Dev Server",
+      title: 'Dev Server'
     },
     header: {
-        title: "Dev Server",
+      title: 'Dev Server'
     },
     theme: 'dracula'
   },
