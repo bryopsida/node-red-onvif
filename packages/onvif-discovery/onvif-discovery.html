@@ -1,0 +1,22 @@
+<script type="text/html" data-template-name="discovery">
+<div class="form-row">
+     <label for="node-input-discoveryInterval"><i class="fa fa-tag"></i> Discovery Interval</label>
+     <input type="text" id="node-input-discoveryInterval" placeholder="Interval in seconds" style="width: 70px;"  data-i18n="[placeholder]node-red:common.label.interval" />
+ </div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('discovery', {
+        category: "ONVIF",
+        color: "#91d2f7",
+        defaults: {
+          discoveryInterval: { value:120, validate:RED.validators.number() },
+        },
+        inputs:0,
+        outputs:1,
+        icon: "onvif.png",
+        label: function() {
+            return this.name||"discovery";
+        }
+    });
+</script>

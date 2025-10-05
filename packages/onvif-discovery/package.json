@@ -1,0 +1,13 @@
+{
+  "name": "@bryopsida/node-red-onvif-discovery",
+  "version": "0.1.0",
+  "node-red": {
+    "version": ">=4.0.0",
+    "nodes": {
+      "discovery": "onvif-discovery.js"
+    }
+  },
+  "dependencies": {
+    "onvif": "^0.8.1"
+  }
+}
