@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node dev-server.js",
     "start:dev": "nodemon --config nodemon.json",
-    "lint": "standard .",
-    "lint:fix": "standard --fix .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "npm run lint --workspaces && standard .",
+    "lint:fix": "npm run lint:fix --workspaces && standard --fix .",
+    "test": "npm test --workspaces"
   },
   "name": "@bryopsida/node-red-onvif",
   "devDependencies": {

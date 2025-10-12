@@ -1,6 +1,11 @@
 {
   "name": "@bryopsida/node-red-onvif-get-rtsp-url",
   "version": "0.1.0",
+  "scripts": {
+    "test": "echo TODO",
+    "lint": "echo TODO",
+    "lint:fix": "echo TODO"
+  },
   "node-red": {
     "version": ">=4.0.0",
     "nodes": {
