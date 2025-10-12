@@ -1,6 +1,7 @@
 {
   "name": "@bryopsida/node-red-onvif-discovery",
   "version": "0.1.0",
+  "license": "Unlicense",
   "scripts": {
     "test": "echo TODO",
     "lint": "echo TODO",
