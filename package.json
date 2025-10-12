@@ -12,7 +12,7 @@
   "name": "@bryopsida/node-red-onvif",
   "devDependencies": {
     "@node-red-contrib-themes/theme-collection": "^4.1.0",
-    "lerna": "^8.2.0",
+    "lerna": "^9.0.0",
     "node-red": "^4.1.0",
     "nodemon": "^3.1.10",
     "standard": "^17.1.2"
