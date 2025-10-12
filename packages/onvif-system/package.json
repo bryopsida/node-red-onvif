@@ -1,0 +1,13 @@
+{
+  "name": "@bryopsida/node-red-onvif-system",
+  "version": "0.1.0",
+  "node-red": {
+    "version": ">=4.0.0",
+    "nodes": {
+      "onvif-system": "onvif-system.js"
+    }
+  },
+  "dependencies": {
+    "onvif": "^0.8.1"
+  }
+}

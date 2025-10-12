@@ -1,22 +1,56 @@
 <script type="text/html" data-template-name="discovery">
-<div class="form-row">
-     <label for="node-input-discoveryInterval"><i class="fa fa-tag"></i> Discovery Interval</label>
-     <input type="text" id="node-input-discoveryInterval" placeholder="Interval in seconds" style="width: 70px;"  data-i18n="[placeholder]node-red:common.label.interval" />
- </div>
+  <div class="form-row">
+    <label for="node-input-mode"><i class="fa fa-cog"></i> Mode</label>
+    <select id="node-input-mode" style="width: 120px;">
+      <option value="timed" data-i18n="onvif-discovery.label.timed">Timed</option>
+      <option value="triggered" data-i18n="onvif-discovery.label.triggered">Triggered</option>
+    </select>
+  </div>
+  <div class="form-row" id="discovery-interval-row">
+    <label for="node-input-discoveryInterval"><i class="fa fa-tag"></i> Discovery Interval</label>
+    <input type="text" id="node-input-discoveryInterval" placeholder="Interval in seconds" style="width: 70px;" data-i18n="[placeholder]node-red:common.label.interval" />
+  </div>
 </script>
 
 <script type="text/javascript">
-    RED.nodes.registerType('discovery', {
-        category: "ONVIF",
-        color: "#91d2f7",
-        defaults: {
-          discoveryInterval: { value:120, validate:RED.validators.number() },
-        },
-        inputs:0,
-        outputs:1,
-        icon: "onvif.png",
-        label: function() {
-            return this.name||"discovery";
+  RED.nodes.registerType('discovery', {
+    category: "ONVIF",
+    color: "#91d2f7",
+    defaults: {
+      mode: { value: "timed" },
+      discoveryInterval: { value: 120, validate: RED.validators.number() },
+    },
+    inputs: function() {
+      if ($("#node-input-mode").val() === "timed") {
+        return 0
+      } else {
+        return 1
+      }
+    },
+    outputs: 1,
+    icon: "onvif.png",
+    label: function() {
+      return this.name || "discovery";
+    },
+    oneditsave: function() {
+      const mode = $("#node-input-mode").val()
+      const node = this
+      if(mode === "timed") {
+        node.inputs = 0
+      } else {
+        node.inputs = 1
+      }
+    },
+    oneditprepare: function() {
+      function toggleInterval() {
+        if ($("#node-input-mode").val() === "timed") {
+          $("#discovery-interval-row").show();
+        } else {
+          $("#discovery-interval-row").hide();
         }
-    });
+      }
+      $("#node-input-mode").on("change", toggleInterval);
+      toggleInterval();
+    }
+  });
 </script>

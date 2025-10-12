@@ -1,5 +1,7 @@
-# node-red-onvi
+# node-red-onvif
 
 ## nodes
 
-- [./packages/onvif-discovery/README.md](onvif-discovery)
+- [ONVIF Discovery](./packages/onvif-discovery/README.md)
+- [ONVIF Get RTSP URL](./packages/onvif-get-rtsp-url/README.md)
+- [ONVIF System](./packages/onvif-system/README.md)

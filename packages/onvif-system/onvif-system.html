@@ -1,0 +1,210 @@
+<script type="text/html" data-template-name="onvif-system">
+  <div class="form-row">
+    <label for="node-config-input-hostname" style="width: 50%;"
+      ><i class="fa fa-globe"></i> <span>Hostname</span></label
+    >
+    <input
+      type="text"
+      id="node-config-input-hostname"
+      name="hostname"
+      required
+      placeholder="Camera IP or Hostname"
+      style="width: 45%;"
+      data-i18n="[placeholder]node-red:common.label.hostname"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-port" style="width: 50%;"
+      ><i class="fa fa-plug"></i> <span>Port</span></label
+    >
+    <input
+      type="text"
+      id="node-config-input-port"
+      name="port"
+      required
+      placeholder="Port"
+      style="width: 45%;"
+      data-i18n="[placeholder]node-red:common.label.port"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-useTls" style="width: 50%;"
+      ><i class="fa fa-lock"></i> <span>Use TLS</span></label
+    >
+    <input
+      type="checkbox"
+      id="node-config-input-useTls"
+      name="useTls"
+      data-i18n="[title]node-red:common.label.use"
+      style="width: 25px;"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-skipTlsVerify" style="width: 50%;"
+      ><i class="fa fa-certificate"></i> <span>Skip TLS Verify</span></label
+    >
+    <input
+      type="checkbox"
+      id="node-config-input-skipTlsVerify"
+      name="skipTlsVerify"
+      data-i18n="[title]node-red:common.label.skip"
+      style="width: 25px;"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-username" style="width: 50%;"
+      ><i class="fa fa-user"></i> <span>Username</span></label
+    >
+    <input
+      type="text"
+      id="node-config-input-username"
+      name="username"
+      placeholder="Username"
+      style="width: 45%;"
+      data-i18n="[placeholder]node-red:common.label.username"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-password" style="width: 50%;"
+      ><i class="fa fa-lock"></i> <span>Password</span></label
+    >
+    <input
+      type="password"
+      id="node-config-input-password"
+      name="password"
+      placeholder="Password"
+      style="width: 45%;"
+      data-i18n="[placeholder]node-red:common.label.password"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-path" style="width: 50%;"
+      ><i class="fa fa-link"></i> <span>Path</span></label
+    >
+    <input
+      type="text"
+      id="node-config-input-path"
+      name="path"
+      placeholder="/onvif/device_service"
+      style="width: 45%;"
+      data-i18n="[placeholder]node-red:common.label.path"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-timeout" style="width: 50%;"
+      ><i class="fa fa-clock-o"></i> <span>Timeout</span></label
+    >
+    <input
+      type="text"
+      id="node-config-input-timeout"
+      name="timeout"
+      placeholder="Timeout in seconds"
+      style="width: 45%;"
+      data-i18n="[placeholder]node-red:common.label.timeout"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-useSoapSecurityHeader" style="width: 50%;"
+      ><i class="fa fa-shield"></i> <span>Use SOAP Security Header</span></label
+    >
+    <input
+      type="checkbox"
+      id="node-config-input-useSoapSecurityHeader"
+      name="useSoapSecurityHeader"
+      data-i18n="[title]node-red:common.label.use"
+      style="width: 25px;"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-autoConnect" style="width: 50%;"
+      ><i class="fa fa-plug"></i> <span>Auto Connect</span></label
+    >
+    <input
+      type="checkbox"
+      id="node-config-input-autoConnect"
+      name="autoConnect"
+      data-i18n="[title]node-red:common.label.auto"
+      style="width: 25px;"
+    />
+  </div>
+  <div class="form-row">
+    <label for="node-config-input-preserveAddress" style="width: 50%;"
+      ><i class="fa fa-map-marker"></i> <span>Preserve Address</span></label
+    >
+    <input
+      type="checkbox"
+      id="node-config-input-preserveAddress"
+      name="preserveAddress"
+      data-i18n="[title]node-red:common.label.preserve"
+      style="width: 25px;"
+    />
+  </div>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType("onvif-system", {
+    category: "config",
+    color: "#91d2f7",
+    defaults: {
+      name: { value: "" },
+      hostname: {
+        value: "",
+        required: true,
+        validate: function(v) {
+          if (!v || v.trim() === "") return false;
+          const val = v.trim();
+          const ipv4 = /^(\d{1,3}\.){3}\d{1,3}$/;
+          const ipv6 = /^\[?[a-fA-F\d:]+\]?$/;
+          const hostname = /^([a-zA-Z\d-]+\.)*[a-zA-Z\d-]+$/;
+          return ipv4.test(val) || ipv6.test(val) || hostname.test(val);
+        },
+      },
+      useSoapSecurityHeader: { value: true },
+      useTls: { value: false },
+      skipTlsVerify: { value: false },
+      path: { value: "/onvif/device_service" },
+      timeout: { value: 120, validate: RED.validators.number() },
+      autoConnect: { value: false },
+      preserveAddress: { value: false },
+      port: {
+        value: 80,
+        required: true,
+        validate: function(v) {
+          if (v === undefined || v === null || v === "") return false;
+          return RED.validators.number()(v);
+        },
+      },
+    },
+    credentials: {
+      username: {
+        type: "text",
+        required: false,
+        validate: function(v) {
+          // 'this' refers to the node being validated
+          const useSoapSecurityHeader =  this.useSoapSecurityHeader ?? $("#node-config-input-useSoapSecurityHeader").prop('checked')
+          console.log(useSoapSecurityHeader)
+          if (useSoapSecurityHeader) {
+            return typeof v === "string" && v.trim().length > 0;
+          }
+          return true;
+        },
+      },
+      password: {
+        type: "password",
+        required: false,
+        validate: function(v) {
+          const useSoapSecurityHeader =  this.useSoapSecurityHeader ?? $("#node-config-input-useSoapSecurityHeader").prop('checked')
+          console.log(useSoapSecurityHeader)
+          if (useSoapSecurityHeader) {
+            return typeof v === "string" && v.trim().length > 0;
+          }
+          return true;
+        },
+      }
+    },
+    icon: "onvif.png",
+    label: function () {
+      return this.name || "onvif-system";
+    },
+  });
+</script>

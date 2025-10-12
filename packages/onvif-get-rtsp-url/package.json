@@ -1,0 +1,13 @@
+{
+  "name": "@bryopsida/node-red-onvif-get-rtsp-url",
+  "version": "0.1.0",
+  "node-red": {
+    "version": ">=4.0.0",
+    "nodes": {
+      "get-rtsp-url": "onvif-get-rtsp-url.js"
+    }
+  },
+  "dependencies": {
+    "onvif": "^0.8.1"
+  }
+}

@@ -1,6 +1,6 @@
 {
-  "watch": [ "packages/**/*.js", "dev-server.js" ],
-  "ext": "js,json",
+  "watch": [ "packages/**/*.js","packages/**/*.html","packages/**/*.json", "dev-server.js" ],
+  "ext": "js,json,html",
   "ignore": [ "node_modules/**", "packages/**/node_modules/**", "node-red-data/**" ],
   "exec": "node dev-server.js",
   "signal": "SIGINT"

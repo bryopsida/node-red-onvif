@@ -1,0 +1,23 @@
+<script type="text/html" data-template-name="get rtsp url">
+  <div class="form-row">
+    <label for="node-input-onvifSystem"><i class="fa fa-globe"></i> <span>Onvif System</span></label>
+    <input type="text" id="node-input-onvifSystem">
+  </div>
+</div>
+</script>
+
+<script type="text/javascript">
+    RED.nodes.registerType('get rtsp url', {
+        category: "ONVIF",
+        color: "#91d2f7",
+        defaults: {
+          onvifSystem: { type:'onvif-system', required:true }
+        },
+        inputs:1,
+        outputs:1,
+        icon: "onvif.png",
+        label: function() {
+            return this.name||"get rtsp url";
+        }
+    });
+</script>
